@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal Kampus - Portal Berita dan Informasi Kampus Terkini</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan variabel CSS */
+        :root {
+            --primary: #1565c0;
+            --secondary: #ff9800;
+            --accent: #4caf50;
+            --light: #f5f7fa;
+            --dark: #0d47a1;
+            --gray: #546e7a;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 26px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e68900;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #3d8b40;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 1.9rem;
+            color: var(--dark);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -3px;
+            left: 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-news {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .badge-academic {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .badge-campus {
+            background-color: #9c27b0;
+            color: white;
+        }
+        
+        .badge-student {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar i {
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+        
+        .date-time {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .header-main {
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo-text h1 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+        
+        .logo-text p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .header-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        
+        .header-tagline {
+            background-color: var(--light);
+            padding: 12px 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary);
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background-color: var(--primary);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            padding: 18px 22px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .nav-links a:hover, .nav-links .active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 22px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after, .nav-links .active::after {
+            width: calc(100% - 44px);
+        }
+        
+        .nav-tools {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 8px 15px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 200px;
+            padding: 5px;
+            outline: none;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-box i {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(21, 101, 192, 0.85), rgba(13, 71, 161, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Campus Highlights */
+        .campus-highlights {
+            background-color: white;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .highlight-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 25px 15px;
+            background-color: var(--light);
+            border-radius: 8px;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .highlight-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .highlight-item:hover .highlight-icon {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .highlight-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* Featured News */
+        .featured-news {
+            margin-bottom: 40px;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .featured-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .featured-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .featured-item.main {
+            grid-column: 1 / -1;
+            display: flex;
+        }
+        
+        .featured-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .featured-item.main .featured-img {
+            width: 50%;
+            height: 350px;
+        }
+        
+        .featured-content {
+            padding: 25px;
+        }
+        
+        .featured-item.main .featured-content {
+            width: 50%;
+        }
+        
+        .featured-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .featured-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        /* Campus Events */
+        .campus-events {
+            margin-bottom: 40px;
+        }
+        
+        .events-list {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .event-item {
+            display: flex;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .event-item:last-child {
+            border-bottom: none;
+        }
+        
+        .event-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .event-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        
+        .event-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        /* Student Corner */
+        .student-corner {
+            background-color: var(--light);
+            padding: 40px;
+            margin: 60px 0;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .student-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .student-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .student-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .student-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .student-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .widget-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            color: var(--primary);
+        }
+        
+        .popular-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .popular-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .popular-number {
+            background-color: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .popular-list li:nth-child(1) .popular-number {
+            background-color: var(--accent);
+        }
+        
+        .popular-list li:nth-child(2) .popular-number {
+            background-color: var(--secondary);
+        }
+        
+        .category-list li {
+            margin-bottom: 12px;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .category-list a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .category-count {
+            background-color: #e9ecef;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .category-list a:hover .category-count {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .quick-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .quick-link:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .quick-link i {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .quick-link:hover i {
+            color: white;
+        }
+        
+        /* Campus Gallery */
+        .campus-gallery {
+            margin: 60px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 60px 0;
+            margin: 60px 0;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            border-radius: 0 6px 6px 0;
+            border: none;
+            padding: 0 25px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #2c387e;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info-footer li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+        
+        .contact-info-footer i {
+            color: var(--secondary);
+            margin-top: 4px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2c387e;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-item.main {
+                flex-direction: column;
+            }
+            
+            .featured-item.main .featured-img,
+            .featured-item.main .featured-content {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.7rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-cta {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                box-shadow: var(--shadow);
+                z-index: 100;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .search-box {
+                display: none;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 6px;
+                width: 100%;
+            }
+            
+            .highlights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .featured-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .event-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .event-date {
+                margin-right: 0;
+                margin-bottom: 15px;
+                align-self: center;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .top-bar .container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .date-time {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <span><i class="fas fa-graduation-cap"></i> Portal Berita dan Informasi Kampus Terkini</span>
+                <div class="date-time">
+                    <span id="current-date"></span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-main">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Jurnal Kampus</h1>
+                            <p>Suara Akademik, Informasi, dan Inspirasi</p>
+                        </div>
+                    </div>
+                    <div class="header-cta">
+                        <div class="header-tagline">
+                            <i class="fas fa-quote-left"></i> Informasi Terkini untuk Generasi Akademik
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-nav">
+            <div class="container nav-container">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#" class="active">Beranda</a></li>
+                    <li><a href="#berita">Berita Kampus</a></li>
+                    <li><a href="#akademik">Akademik</a></li>
+                    <li><a href="#mahasiswa">Mahasiswa</a></li>
+                    <li><a href="#event">Event</a></li>
+                    <li><a href="#beasiswa">Beasiswa</a></li>
+                    <li><a href="#karir">Karir</a></li>
+                </ul>
+                
+                <div class="nav-tools">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari berita kampus...">
+                    </div>
+                    <div class="mobile-toggle" id="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Portal Informasi Kampus Terlengkap dan Terpercaya</h1>
+                <p>Dapatkan berita terkini seputar dunia kampus, informasi akademik, kegiatan mahasiswa, peluang beasiswa, dan perkembangan karir untuk generasi akademik Indonesia.</p>
+                <div class="hero-buttons">
+                    <a href="#berita" class="btn">Baca Berita Terbaru</a>
+                    <a href="#event" class="btn btn-secondary">Lihat Event Kampus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Highlights -->
+    <section class="campus-highlights">
+        <div class="container">
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Berita Kampus</h3>
+                    <p>Informasi terkini seputar perkembangan kampus</p>
+                </div>
+                
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Akademik</h3>
+                    <p>Kurikulum, penelitian, dan publikasi akademik</p>
+                </div>
+                
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Kegiatan Mahasiswa</h3>
+                    <p>UKM, organisasi, dan kegiatan kemahasiswaan</p>
+                </div>
+                
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Beasiswa</h3>
+                    <p>Peluang beasiswa dalam dan luar negeri</p>
+                </div>
+                
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Karir & Magang</h3>
+                    <p>Lowongan kerja dan peluang magang</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Featured News -->
+                <div class="section-title" id="berita">
+                    <h2>Berita Utama Kampus</h2>
+                </div>
+                
+                <div class="featured-news">
+                    <div class="featured-grid">
+                        <!-- Main Featured -->
+                        <div class="featured-item main">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wisuda Perguruan Tinggi" class="featured-img">
+                            <div class="featured-content">
+                                <span class="badge badge-news">UTAMA</span>
+                                <span class="badge badge-academic">AKADEMIK</span>
+                                <h3>Wisuda Sarjana Terbesar Tahun 2024 Diikuti 5.000 Lulusan</h3>
+                                <p>Universitas Indonesia menggelar wisuda sarjana terbesar dengan 5.000 lulusan dari berbagai fakultas. Rektor menyampaikan pesan khusus tentang kontribusi alumni dalam pembangunan bangsa di era digital.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 3 jam yang lalu</span>
+                                    <span><i class="far fa-eye"></i> 4.2k dilihat</span>
+                                    <span><i class="far fa-comment"></i> 89 komentar</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured 1 -->
+                        <div class="featured-item">
+                            <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Penelitian Mahasiswa" class="featured-img">
+                            <div class="featured-content">
+                                <span class="badge badge-campus">RISET</span>
+                                <h3>Tim Mahasiswa ITB Raih Juara 1 Kompetisi Robotik Internasional</h3>
+                                <p>Tim robotik dari Institut Teknologi Bandung berhasil meraih juara pertama dalam kompetisi robotik internasional di Singapura, mengalahkan tim dari 25 negara.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 1 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured 2 -->
+                        <div class="featured-item">
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Diskusi Mahasiswa" class="featured-img">
+                            <div class="featured-content">
+                                <span class="badge badge-student">MAHASISWA</span>
+                                <h3>Festival Seni Mahasiswa Nasional 2024 Akan Digelar di Yogyakarta</h3>
+                                <p>Pekan seni mahasiswa tingkat nasional akan menampilkan berbagai karya seni dari mahasiswa seluruh Indonesia selama seminggu penuh di Yogyakarta.</p>
+                                <div class="news-meta">
+                                    <span><i class="far fa-clock"></i> 2 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Campus Events -->
+                <div class="section-title" id="event">
+                    <h2>Agenda Kampus</h2>
+                </div>
+                
+                <div class="campus-events">
+                    <div class="events-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">25</div>
+                                <div class="event-month">Mei</div>
+                            </div>
+                            <div class="event-content">
+                                <h4>Seminar Nasional "Teknologi dan Masa Depan Pendidikan"</h4>
+                                <div class="news-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> Auditorium Universitas Gadjah Mada</span>
+                                    <span><i class="fas fa-clock"></i> 09.00 - 16.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">28</div>
+                                <div class="event-month">Mei</div>
+                            </div>
+                            <div class="event-content">
+                                <h4>Job Fair Nasional 2024 - Peluang Karir untuk Fresh Graduate</h4>
+                                <div class="news-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> Hall A Jakarta Convention Center</span>
+                                    <span><i class="fas fa-clock"></i> 08.00 - 17.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class
